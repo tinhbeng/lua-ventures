@@ -77,19 +77,16 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    $(".nav-item > a").on('click', function (event) {
+    $(".navigation a").on('click', function (event) {
         // Make sure this.hash has a value before overriding default behavior
         let element = $(this).closest('.nav-wrap').find('.navigation');
         if (element.hasClass('show')) {
             element.removeClass("show");
         }
-        if ($(".nav-item > a").hasClass('active')) {
-            $(".nav-item > a").removeClass('active');
-        }
-        $(this).addClass('active')
         if (this.hash !== "") {
             // Prevent default anchor click behavior
             event.preventDefault();
+            $(document).off("scroll");
 
             // Store hash
             var hash = this.hash;
@@ -105,19 +102,18 @@ jQuery(document).ready(function ($) {
             });
         } // End if
     });
+    function onScroll(event) {
+        var scrollPos = $(document).scrollTop();
+        $('.navigation a').each(function () {
+            var currLink = $(this);
+            var refElement = $(currLink.attr("href"));
+            if (refElement.position().top < scrollPos && refElement.position().top + refElement.height() >= scrollPos) {
+                $('.navigation a').removeClass("active");
+                currLink.addClass("active");
+            }
+            else {
+                currLink.removeClass("active");
+            }
+        });
+    }
 });
-
-function onScroll(event) {
-    var scrollPos = $(document).scrollTop();
-    $('.nav-item > a').each(function () {
-        var currLink = $(this);
-        var refElement = $(currLink.attr("href"));
-        if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
-            $('.nav-item > a').removeClass("active");
-            currLink.addClass("active");
-        }
-        else {
-            currLink.removeClass("active");
-        }
-    });
-}
