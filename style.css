@@ -6,8 +6,7 @@ body {
   background-color: #000;
 }
 body,
-p,
-* {
+p {
   font-family: "Roboto", sans-serif;
   font-size: 15px;
   color: #D8D8D8;
@@ -35,6 +34,7 @@ h4 {
 a {
   display: inline-block;
   text-decoration: none;
+  color: inherit;
 }
 ul {
   margin: 0;
@@ -99,6 +99,11 @@ ul {
   text-decoration: none;
   display: block;
 }
+.main-nav .navigation li > a:hover,
+.main-nav .navigation li > a.active{
+  color:#fabc46;
+}
+
 .main-nav .is-child {
   position: relative;
 }

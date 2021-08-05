@@ -1,6 +1,7 @@
 'use strict'
 
 jQuery(document).ready(function ($) {
+    $(document).on("scroll", onScroll);
     $('.partner-box').slick({
         dots: true,
         rows: 2,
@@ -82,6 +83,10 @@ jQuery(document).ready(function ($) {
         if (element.hasClass('show')) {
             element.removeClass("show");
         }
+        if ($(".nav-item > a").hasClass('active')) {
+            $(".nav-item > a").removeClass('active');
+        }
+        $(this).addClass('active')
         if (this.hash !== "") {
             // Prevent default anchor click behavior
             event.preventDefault();
@@ -101,3 +106,18 @@ jQuery(document).ready(function ($) {
         } // End if
     });
 });
+
+function onScroll(event) {
+    var scrollPos = $(document).scrollTop();
+    $('.nav-item > a').each(function () {
+        var currLink = $(this);
+        var refElement = $(currLink.attr("href"));
+        if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+            $('.nav-item > a').removeClass("active");
+            currLink.addClass("active");
+        }
+        else {
+            currLink.removeClass("active");
+        }
+    });
+}
