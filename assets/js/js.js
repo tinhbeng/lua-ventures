@@ -87,7 +87,8 @@ jQuery(document).ready(function ($) {
             // Prevent default anchor click behavior
             event.preventDefault();
             $(document).off("scroll");
-
+            $('.navigation a').removeClass('active')
+            $(this).addClass('active')
             // Store hash
             var hash = this.hash;
 
