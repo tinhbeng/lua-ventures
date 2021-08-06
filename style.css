@@ -41,19 +41,13 @@ ul {
   list-style: none;
 }
 
-.logo {
+/* .logo {
   display: flex;
   align-items: center;
-}
-.logo img {
+} */
+/* .logo img {
   max-width: 50px;
-}
-.logo-name {
-  margin-left: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #fff;
-}
+} */
 .flex-row {
   display: flex;
   flex-direction: row;
